@@ -1,0 +1,9 @@
+.li {
+  width: 350px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.li:not(:last-child) {
+  margin-bottom: 5px;
+}
