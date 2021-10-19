@@ -14,9 +14,10 @@ const Filter = () => {
   };
 
   return (
-    <label className={styles.label}>
+    <label>
       Search
       <input
+        className={styles.Input}
         onChange={onHandleChange}
         value={filter}
         type="text"

@@ -1,18 +1,17 @@
-.form {
+.container {
   width: 300px;
-  height: 200px;
-  padding: 10px;
+
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 3px solid royalblue;
-  border-radius: 5px;
+}
+.name {
 }
 
 .formLabel {
   font-family: sans-serif;
   font-size: 18px;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 
 .formInput {

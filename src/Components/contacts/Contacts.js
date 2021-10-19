@@ -4,6 +4,7 @@ import React from "react";
 import ContactList from "../contactsList/ContacsList";
 import Filter from "../filter/Filter";
 import Form from "../form/Form";
+import styles from "./Contacts.module.css";
 // import {
 //   addNewContact,
 //   getAllContacts,
@@ -21,11 +22,11 @@ const Contacts = ({ contacts, getAllContacts }) => {
   // }, [contacts]);
 
   return (
-    <>
+    <div className={styles.container}>
       <Form />
       <Filter />
       <ContactList />
-    </>
+    </div>
   );
 };
 

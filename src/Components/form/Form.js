@@ -59,6 +59,7 @@ const Form = () => {
         <label>
           Name
           <input
+            className={styles.formInput}
             value={contact.contactName}
             onChange={onHandleChange}
             type="text"
@@ -71,6 +72,7 @@ const Form = () => {
         <label>
           Telefon
           <input
+            className={styles.formInput}
             value={contact.contactNumber}
             onChange={onHandleChange}
             type="tel"
