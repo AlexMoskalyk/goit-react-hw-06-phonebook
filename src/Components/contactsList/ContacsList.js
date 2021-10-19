@@ -1,52 +1,58 @@
 import React from "react";
-import { connect } from "react-redux";
+// import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import styles from "../contactsList/ContactsList.module.css";
 import { deleteContact } from "../redux/contacts/contacts-actions";
+import { useDispatch, useSelector } from "react-redux";
 
-const ContactList = ({ contacts, deleteContact }) => {
+const ContactList = () => {
+  const dispatch = useDispatch();
+  const contacts = useSelector((state) =>
+    getVisibleContacts(state.contacts.items, state.contacts.filter)
+  );
+ 
+  const error = useSelector((state) => state.contacts.error);
   return (
-    <ul className={styles.ul}>
-      {contacts &&
-        contacts.map((item) => (
-          <li className={styles.li} key={item.id}>
-            <span>{item.contactName}</span>
-            <span>{item.contactNumber}</span>
-            <button type="button" onClick={() => deleteContact(item.id)}>
-              Delete
-            </button>
-          </li>
-        ))}
-    </ul>
+    <>
+     
+      {error && <h2>Somthing was wrong !</h2>}
+      <ul className={styles.ul}>
+        {contacts &&
+          contacts.map((item) => (
+            <li className={styles.li} key={item.id}>
+              <span>{item.contactName}</span>
+              <span>{item.contactNumber}</span>
+              <button
+                type="button"
+                onClick={() => dispatch(deleteContact(item.id))}
+              >
+                Delete
+              </button>
+            </li>
+          ))}
+      </ul>
+    </>
   );
 };
 
 const getVisibleContacts = (allContacts, filter) => {
   const normalizedFilter = filter.toLowerCase();
-  //   return allContacts.filter((contact) =>
-  //     console.log(contact.contactName.toLowerCase().includes("roise"))
-  //   );
-
   return allContacts.filter((contact) =>
     contact.contactName.toLowerCase().includes(normalizedFilter)
   );
 };
 
-const mapStateToProps = (state) => ({
-  contacts: getVisibleContacts(state.contacts.items, state.contacts.filter),
-});
+// const mapStateToProps = (state) => ({
+//   contacts: getVisibleContacts(state.contacts.items, state.contacts.filter),
+// });
 
-// const mapStateToProps = (state) => {
-//   return {
-//     contacts: state.contacts,
-//   };
+// const mapDispatchToProps = {
+//   deleteContact,
 // };
-const mapDispatchToProps = {
-  deleteContact,
-};
 
 ContactList.propTypes = {
   allContacts: PropTypes.string,
   filter: PropTypes.string,
 };
-export default connect(mapStateToProps, mapDispatchToProps)(ContactList);
+export default ContactList;
+// export default connect(mapStateToProps, mapDispatchToProps)(ContactList);

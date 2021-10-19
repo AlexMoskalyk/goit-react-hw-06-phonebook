@@ -1,24 +1,28 @@
 import React, { useState } from "react";
-import { connect } from "react-redux";
+// import { connect } from "react-redux";
 import { addNewContact } from "../redux/contacts/contacts-actions";
 import styles from "./Form.module.css";
 import PropTypes from "prop-types";
+import { useDispatch, useSelector } from "react-redux";
 
 const initialState = {
   contactName: "",
   contactNumber: "",
 };
 
-const Form = ({ addNewContact, contatcs }) => {
+const Form = () => {
   const [contact, setContact] = useState(initialState);
+  const contacts = useSelector((state) => state.contacts.items);
+
+  const dispatch = useDispatch();
 
   const isThereContact = (contactName, contactNumber) => {
     return (
-      contatcs.some(
+      contacts.some(
         (contact) =>
           contact.contactName.toLowerCase() === contactName.toLowerCase()
       ) ||
-      contatcs.some(
+      contacts.some(
         (contact) =>
           contact.contactNumber.toLowerCase() === contactNumber.toLowerCase()
       )
@@ -44,7 +48,7 @@ const Form = ({ addNewContact, contatcs }) => {
       );
     }
 
-    addNewContact(contact);
+    dispatch(addNewContact(contact));
 
     reset();
   };
@@ -85,17 +89,18 @@ const Form = ({ addNewContact, contatcs }) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  contatcs: state.contacts.items,
-});
+// const mapStateToProps = (state) => ({
+//   contatcs: state.contacts.items,
+// });
 
-const mapDispatchToProps = {
-  addNewContact,
-};
+// const mapDispatchToProps = {
+//   addNewContact,
+// };
 
 Form.propTypes = {
   contatcs: PropTypes.array,
   addNewContact: PropTypes.func,
 };
+export default Form;
 
-export default connect(mapStateToProps, mapDispatchToProps)(Form);
+// export default connect(mapStateToProps, mapDispatchToProps)(Form);

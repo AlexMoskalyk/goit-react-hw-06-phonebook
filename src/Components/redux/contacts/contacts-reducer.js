@@ -26,8 +26,9 @@ const items = createReducer(
 );
 
 const filter = createReducer("", {
-  [CHANGE_FILTER]: (state, action) => action.payload,
+  [CHANGE_FILTER]: (_, action) => action.payload,
 });
+
 //===========================redux======================================
 // const items = (
 //   state = [
