@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 // import { connect } from "react-redux";
-import { addNewContact } from "../redux/contacts/contacts-actions";
+import { addNewContact } from "../../redux/contacts/contacts-actions";
 import styles from "./Form.module.css";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
 
 const initialState = {
@@ -99,10 +99,10 @@ const Form = () => {
 //   addNewContact,
 // };
 
-Form.propTypes = {
-  contatcs: PropTypes.array,
-  addNewContact: PropTypes.func,
-};
+// Form.propTypes = {
+//   contatcs: PropTypes.array,
+//   addNewContact: PropTypes.func,
+// };
 export default Form;
 
 // export default connect(mapStateToProps, mapDispatchToProps)(Form);

@@ -1,11 +1,12 @@
 import { combineReducers } from "redux";
-import {
-  ADD_NEW_CONTACT,
-  GET_ALL_CONTACTS,
-  DELETE_CONTACT,
-  CHANGE_FILTER,
-} from "../contacts/contacts-types";
+
 import { createReducer } from "@reduxjs/toolkit";
+import {
+  changeFilter,
+  deleteContact,
+  getAllContacts,
+  addNewContact,
+} from "./contacts-actions";
 
 //==============================toolkit============================
 
@@ -17,16 +18,15 @@ const items = createReducer(
     { id: "id-4", contactName: "Annie Copeland", contactNumber: "2279126" },
   ],
   {
-    [ADD_NEW_CONTACT]: (state, action) => [...state, action.payload],
-    [GET_ALL_CONTACTS]: (state, action) => action.payload,
-    [DELETE_CONTACT]: (state, action) =>
+    [addNewContact]: (state, action) => [...state, action.payload],
+    [getAllContacts]: (state, action) => action.payload,
+    [deleteContact]: (state, action) =>
       state.filter((contact) => contact.id !== action.payload),
-    [GET_ALL_CONTACTS]: (state, action) => action.payload,
   }
 );
 
 const filter = createReducer("", {
-  [CHANGE_FILTER]: (_, action) => action.payload,
+  [changeFilter]: (_, action) => action.payload,
 });
 
 //===========================redux======================================

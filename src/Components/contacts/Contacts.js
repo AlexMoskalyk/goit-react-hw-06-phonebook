@@ -11,7 +11,7 @@ import styles from "./Contacts.module.css";
 // } from "../redux/contacts/contacts-actions";
 // import PropTypes from "prop-types";
 
-const Contacts = ({ contacts, getAllContacts }) => {
+const Contacts = () => {
   // useEffect(() => {
   //   const newContacts = load("contacts");
   //   getAllContacts(newContacts);
